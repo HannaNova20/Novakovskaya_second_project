@@ -1,29 +1,42 @@
 * {
     margin: 0;
     padding: 0;
+    /* переопределим box-sizing чтобы было удобнее работать */
+    box-sizing: border-box;
 }
+/*
+сейчас блок не тянется на ширину и высоту монитора
+http://prntscr.com/10g7n30
+исправим это
+*/
 .header {
     position: static;
     height: 769px;
-    width: 1438px;
-    background: url(../img/bg_header.jpg);
+    /*убираем ширину фикс, которая не дает тянуться фону */
+    /*width: 1438px;*/
+    background: url("../img/bg_header.jpg");
+    /*добавляем картике заполнение всего пространства*/
+    background-size: cover;
     border: 1px solid #E6E6E6;
-    top: -1px;
+    /*top: -1px;*/
 }
 .header_content {
     display: flex;
     flex-direction: column;
-    padding: 41px 428px 71px 434px;
+    /*не нужно поджимать справа и слева */
+    /*padding: 41px 428px 71px 434px;*/
+    padding: 41px 0 71px;
     text-align: center;
     align-items: center;
 }
 .header_content_logo {
     width: 101.62px;
     height: 23px;
-    background: url(../img/white_logo.png)
+    background: url("../img/white_logo.png");
 }
 .header_content_title {
-    position: static;
+    /*свойство по умолчанию, не нужно его по новой писать*/
+    /*position: static;*/
     padding-top: 310px;
     width: 576px;
     height: 60px;
@@ -35,8 +48,9 @@
     white-space: nowrap;
 }
 .header_content_subtitle {
-    position: static;
-    top: 21px;
+    /*position: static;*/
+    /*top не будет работать для statiс, но здесь и не нужно*/
+    /*top: 21px;*/
     width: 386px;
     height: 22px;
     font-family: Open Sans;
@@ -46,6 +60,7 @@
     line-height: 22px;
     color: #FFFFFF;
 }
+
 .header_content_bottom {
     position: static;
     margin-top: 221px;
@@ -60,8 +75,10 @@
     color: #FFFFFF;
     white-space: nowrap;
 }
-.block_1 {
-    position: static;
+
+/*старые стили*/
+/*.block_1 {
+    !*position: static;*!
     display: flex;
     flex-direction: row;
     width: 1442px;
@@ -103,7 +120,147 @@
 .nav_link_active {
     text-decoration: none;
     color: #00A4E5;
+}*/
+
+/* исправленный кусок №1*/
+.container {
+    width: 970px;/* фиксируем ширину контента */
+    padding: 0 15px;/* чтобы не прилипало по краям никогда */
+    margin: 0 auto;/* центрируем */
 }
+/* блок nav-section */
+.nav-section {
+    border-bottom: 1px solid #E6E6E6;/* полоса на всю ширину экрана */
+}
+/* элемент nav-section__inner блока nav-section */
+.nav-section__inner {
+    /* поворачиваем ось */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 0;
+}
+/* элемент nav-section__logo блока nav-section */
+.nav-section__logo {}
+/* элемент nav-section__logo-img блока nav-section */
+.nav-section__logo-img {}
+
+/* блок nav */
+.nav {}
+/* элемент nav__menu блока nav */
+.nav__list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+/* элемент nav__item блока nav */
+.nav__item {
+    margin: 0 0 0 30px;
+}
+/* элемент nav__link блока nav */
+.nav__link {
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all ease 0.3s;
+
+    font-weight: 600;
+    font-size: 12px;
+    color: #48555B;
+}
+/* активное состояние + состояние ховера */
+.nav__link.active,
+.nav__link:hover {
+    color: #00A4E5;
+}
+
+/* /исправленный кусок №1 */
+
+/* исправленный кусок №2 */
+.story {
+    padding: 50px 0 0;
+}
+.story__title {
+    text-align: center;
+    margin: 0 0 40px;
+}
+.story__body {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+.story__content {
+    max-width: 50%;
+    flex: 0 0 50%;
+    padding: 0 15px;
+}
+.story__content-inner {
+    max-width: 420px;
+}
+.story__content-title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    color: #48555B;
+    margin: 0 0 20px;
+}
+.story__content-title span {
+    color: #00A4E5;
+}
+.story__content-text {
+    font-size: 13px;
+    line-height: 23px;
+    color: #48555B;
+}
+.story__items {
+    max-width: 50%;
+    flex: 0 0 50%;
+    padding: 0 15px;
+    margin-top: 20px;
+}
+.story__items-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.sitem {
+    position: relative;
+    max-width: 33.3333%;
+    flex: 0 0 33.3333%;
+    padding: 0 10px;
+}
+.sitem__img {
+    width: 100%;
+    max-width: 100%;
+}
+.sitem__text {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    max-width: 110px;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+.title__inner {
+    position: relative;
+}
+.title__inner::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -25px;
+    width: 50px;
+    height: 2px;
+    background: #00A4E5;
+}
+/* /исправленный кусок №2 */
+
+/* далее принцип тот же */
+
 .block_2 {
     display: flex;
     flex-direction: column;
